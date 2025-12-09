@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dominika Kvízová - Výživové Poradenství</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #3a3a3a;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 20px 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8B6F47;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+            flex: 1;
+            margin: 0 60px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #3a3a3a;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #8B6F47;
+        }
+
+        .nav-cta {
+            background: #8B6F47;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background: #704d38;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 111, 71, 0.25);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #f9f7f4 0%, #fefcfa 100%);
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .hero .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Lora', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 25px;
+            color: #3a3a3a;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .hero .description {
+            font-size: 1rem;
+            color: #888;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+        }
+
+        .hero-image-wrapper {
+            margin-top: 60px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 600px;
+            height: 450px;
+            background: linear-gradient(135deg, #eae4dd 0%, #ddd5ce 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .placeholder-text {
+            color: #bbb;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+            padding: 100px 40px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #eae4dd 0%, #ddd5ce 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .about h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #3a3a3a;
+            line-height: 1.3;
+        }
+
+        .about p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 40px;
+            background: #fafaf8;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .services-header h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #3a3a3a;
+            margin-bottom: 15px;
+        }
+
+        .services-header p {
+            font-size: 1rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 2px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border-top: 3px solid #8B6F47;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+        }
+
+        .service-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: #8B6F47;
+            color: white;
+            border-radius: 50%;
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #3a3a3a;
+        }
+
+        .service-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #8B6F47;
+            margin-bottom: 18px;
+            letter-spacing: -0.3px;
+        }
+
+        .service-card p {
+            color: #777;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 100px 40px;
+            background: white;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .location-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .location-header h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #3a3a3a;
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .location-text h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #3a3a3a;
+        }
+
+        .location-text p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+
+        .location-detail {
+            background: #fafaf8;
+            padding: 25px 30px;
+            border-radius: 2px;
+            border-left: 4px solid #8B6F47;
+            margin: 30px 0;
+        }
+
+        .location-detail h4 {
+            font-family: 'Lora', serif;
+            color: #8B6F47;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .location-detail p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .location-image {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, #eae4dd 0%, #ddd5ce 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        /* Stories Section */
+        .stories {
+            padding: 100px 40px;
+            background: #fafaf8;
+        }
+
+        .stories-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .stories-header h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #3a3a3a;
+            margin-bottom: 15px;
+        }
+
+        .stories-header p {
+            font-size: 1rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .story-card {
+            background: white;
+            padding: 40px;
+            border-radius: 2px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #eae4dd 0%, #ddd5ce 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .story-card h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #3a3a3a;
+        }
+
+        .story-meta {
+            font-size: 0.85rem;
+            color: #8B6F47;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .story-card p {
+            color: #777;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Approach Section */
+        .approach {
+            padding: 100px 40px;
+            background: white;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .approach-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .approach-header h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #3a3a3a;
+        }
+
+        .approach-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .approach-text h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #3a3a3a;
+        }
+
+        .approach-text ul {
+            list-style: none;
+        }
+
+        .approach-text li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .approach-text li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #8B6F47;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .approach-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #eae4dd 0%, #ddd5ce 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        /* CTA Final */
+        .cta-final {
+            padding: 100px 40px;
+            background: #8B6F47;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-final h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .cta-final p {
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: #3a3a3a;
+            color: #999;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #555;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 50px;
+            border-radius: 2px;
+            width: 90%;
+            max-width: 550px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: #999;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #3a3a3a;
+        }
+
+        .modal h2 {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #3a3a3a;
+            font-weight: 700;
+        }
+
+        .modal-intro {
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #3a3a3a;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8B6F47;
+            box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.1);
+        }
+
+        .modal-button {
+            width: 100%;
+            padding: 14px;
+            background: #8B6F47;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-button:hover {
+            background: #704d38;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(139, 111, 71, 0.25);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                margin: 20px 0 0 0;
+                gap: 15px;
+                flex-direction: column;
+            }
+
+            .about .container,
+            .approach-content,
+            .location-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid,
+            .stories-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .cta-final h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
+            <div class="logo">~ Dominika Kvízová</div>
+            <ul style="margin: 0;">
+                <li><a href="#about">O mně</a></li>
+                <li><a href="#services">Služby</a></li>
+                <li><a href="#location">Sídlo</a></li>
+                <li><a href="#stories">Příběhy</a></li>
+                <li><a href="#approach">Přístup</a></li>
+            </ul>
+            <button class="nav-cta" onclick="openConsultation()">Bezplatná konzultace</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Změna, která dává smysl</h1>
+            <p class="subtitle">Výživové poradenství bez extrémů</p>
+            <p class="description">Bez diet, bez nereálných slibů. Jen postupné kroky, které se ti podaří dodržet, a podpora, na kterou se můžeš spolehnout. Stojím při tobě i v momentě, kdy přestaneš věřit sám sobě.</p>
+            
+            <div class="hero-image-wrapper">
+                <div class="hero-image">
+                    <div class="placeholder-text">
+                        <div style="font-size: 4rem; margin-bottom: 10px;">📸</div>
+                        Tvůj profilový obrázek
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-image">
+                <div class="placeholder-text">
+                    <div style="font-size: 4rem; margin-bottom: 10px;">📸</div>
+                    Fotografie nebo portrét
+                </div>
+            </div>
+            <div>
+                <h2>Kdo jsem</h2>
+                <p>Jsem výživová poradkyně zaměřená na udržitelné změny životního stylu. Věřím, že cesta ke zdraví není jen o jídle, ale také o pocitech, o tom, jak se vnímáš, a o bezpečném prostoru, kde se můžeš rozvinout.</p>
+                <p>Kombinuji výživu, edukaci, diagnostiku a především osobní individuální přístup. Každý klient je jiný – jiné potřeby, jiné strachy, jiné vítězství. Proto pro každého vytvářím program, který je přesně na míru.</p>
+                <p>Mým cílem není ti vnucovat striktní pravidla, ale ukázat ti cestu, kterou budeš chtít jít. Stojím při tobě i v momentech, kdy to zkoušíš.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-header">
+                <h2>Naše služby</h2>
+                <p>Různé cesty k cíli – vyber si to, co ti vyhovuje</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">1</div>
+                    <h3>Diagnostika InBody</h3>
+                    <div class="service-price">700 Kč</div>
+                    <p>Přesné měření složení těla s detailním vysvětlením výsledků. Zjistíš, kde opravdu stojíš a jakými kroky se můžeš posunout dál.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-number">2</div>
+                    <h3>Nutriční plán</h3>
+                    <div class="service-price">3 500 Kč</div>
+                    <p>Individuální jídelníček na míru s analýzou tvých návyků, konkrétními doporučeními a systémem, který opravdu zvládneš dodržovat.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-number">3</div>
+                    <h3>Konzultace</h3>
+                    <div class="service-price">1 200 Kč</div>
+                    <p>Jednorázová 60minutová konzultace na konkrétní téma. Praktické rady, které můžeš použít okamžitě a podle kterých se můžeš orientovat.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-number">4</div>
+                    <h3>Měsíční koučink</h3>
+                    <div class="service-price">6 900 Kč / měsíc</div>
+                    <p>Komplexní program s diagnostikou, plánem, pravidelným vedením a emailovou podporou. Opravdová změna se skutečnou podporou po tvém boku.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="location">
+        <div class="container">
+            <div class="location-header">
+                <h2>Kde mě najdeš</h2>
+            </div>
+
+            <div class="location-content">
+                <div class="location-text">
+                    <h3>Naše sídlo</h3>
+                    <p>Mám své kanceláře v prestižním BB centru v Praze, kde se mi věnuješ v profesionálním a příjemném prostředí, které má všechno, co potřebuješ.</p>
+                    
+                    <div class="location-detail">
+                        <h4>📍 BB Centrum Praha</h4>
+                        <p>Přímé setkání pro konzultace a InBody diagnostiku</p>
+                    </div>
+
+                    <div class="location-detail">
+                        <h4>💻 Online Možnost</h4>
+                        <p>Všechny konzultace jsou dostupné také online ze svého domova</p>
+                    </div>
+
+                    <p>Bez ohledu na formát setkání zůstává kvalita péče stejná. Vždy ti věnuji 100% pozornosti.</p>
+                </div>
+
+                <div class="location-image">
+                    <div class="placeholder-text">
+                        <div style="font-size: 4rem; margin-bottom: 10px;">📸</div>
+                        Fotografie kanceláře
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section class="stories" id="stories">
+        <div class="container">
+            <div class="stories-header">
+                <h2>Příběhy našich klientů</h2>
+                <p>Skutečné lidské příběhy o změně a cestě k sobě</p>
+            </div>
+
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-image">
+                        <div class="placeholder-text">
+                            <div style="font-size: 3rem; margin-bottom: 10px;">📸</div>
+                            Fotografie
+                        </div>
+                    </div>
+                    <h3>Petra, 34 let</h3>
+                    <p class="story-meta">Březen - Červen 2024</p>
+                    <p>"Po třech měsících s Dominikou se nepoznávám. Nejde jen o číslice na váze, ale o tom, jak se cítím. Konečně jím bez pocitu viny a energie mi stoupla."</p>
+                </div>
+
+                <div class="story-card">
+                    <div class="story-image">
+                        <div class="placeholder-text">
+                            <div style="font-size: 3rem; margin-bottom: 10px;">📸</div>
+                            Fotografie
+                        </div>
+                    </div>
+                    <h3>Tomáš, 42 let</h3>
+                    <p class="story-meta">Květen - Srpen 2024</p>
+                    <p>"Vyzkoušel jsem spoustu diet, ale tenhle přístup je úplně jiný. Dominika mi ukázala, že se nemusím zbavovat svých oblíbených jídel, jen je lépe pochopit."</p>
+                </div>
+
+                <div class="story-card">
+                    <div class="story-image">
+                        <div class="placeholder-text">
+                            <div style="font-size: 3rem; margin-bottom: 10px;">📸</div>
+                            Fotografie
+                        </div>
+                    </div>
+                    <h3>Michaela, 29 let</h3>
+                    <p class="story-meta">Únor - Květen 2024</p>
+                    <p>"Měla jsem strach, že mi něco zakáže. Místo toho mi Dominika pomohla pochopit svého těla a své návyky. Nyní se cítím sebevědomě."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="approach" id="approach">
+        <div class="container">
+            <div class="approach-header">
+                <h2>Můj přístup</h2>
+            </div>
+
+            <div class="approach-content">
+                <div class="approach-text">
+                    <h3>Bez extrémů. S porozuměním.</h3>
+                    <ul>
+                        <li>Žádné striktní zákazy a nepoddajná pravidla</li>
+                        <li>Bezpečný prostor bez tlaku a sudu</li>
+                        <li>Edukace, kterou opravdu pochopíš</li>
+                        <li>Realističné plány, které se dají skutečně dodržet</li>
+                        <li>Podpora i v momentech, kdy sám sobě nevěříš</li>
+                        <li>Fokus na dlouhodobé změny</li>
+                        <li>Věřím, že změna přichází postupně</li>
+                    </ul>
+                </div>
+
+                <div class="approach-image">
+                    <div class="placeholder-text">
+                        <div style="font-size: 4rem; margin-bottom: 10px;">📸</div>
+                        Fotografický obsah
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>Připraven na první krok?</h2>
+            <p>Zajistíme si čas na konzultaci, kde si ujasníme, co potřebuješ a jak ti mohu pomoci. Bez závazků, bez otázek.</p>
+        </div>
+    </section>
+
+    <!-- Consultation Modal -->
+    <div id="consultationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeConsultation()">&times;</span>
+            <h2>Bezplatná konzultace</h2>
+            <p class="modal-intro">Vyplň si formulář a my ti brzy napíšeme.</p>
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Jméno *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Co tě trápí? (volitelně)</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Popiš mi stručně..."></textarea>
+                </div>
+                <button type="submit" class="modal-button">Zaslat žádost</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Dominika Kvízová – Výživové poradenství. Všechna práva vyhrazena.</p>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('consultationModal');
+
+        function openConsultation() {
+            modal.style.display = 'block';
+        }
+
+        function closeConsultation() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Díky ${name}! Brzy ti pošleme více informací.`);
+            closeConsultation();
+            document.querySelector('form').reset();
+        }
+    </script>
+</body>
+</html>
