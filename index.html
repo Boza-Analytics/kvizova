@@ -648,8 +648,89 @@
             box-shadow: 0 8px 20px rgba(139, 111, 71, 0.25);
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2.5px;
+            background: #3a3a3a;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            nav .container {
+                padding: 0;
+                flex-wrap: nowrap;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 3;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+                border-top: 1px solid #f0f0f0;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                width: 100%;
+                margin: 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                padding: 12px 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
             .hero {
                 padding: 60px 20px;
             }
@@ -658,15 +739,21 @@
                 font-size: 2.2rem;
             }
 
-            nav .container {
-                flex-direction: column;
-                gap: 20px;
+            .about,
+            .services,
+            .location,
+            .stories,
+            .approach,
+            .cta-final {
+                padding: 60px 20px;
             }
 
-            nav ul {
-                margin: 20px 0 0 0;
-                gap: 15px;
-                flex-direction: column;
+            .services-header h2,
+            .stories-header h2,
+            .location-header h2,
+            .approach-header h2,
+            .services-header h2 {
+                font-size: 1.8rem;
             }
 
             .about .container,
@@ -689,6 +776,65 @@
             .cta-final h2 {
                 font-size: 1.8rem;
             }
+
+            .about-image,
+            .location-image,
+            .approach-image {
+                height: 300px;
+            }
+
+            .hero-image {
+                height: 350px;
+            }
+
+            .story-image {
+                height: 200px;
+            }
+
+            nav {
+                position: relative;
+            }
+
+            nav ul {
+                position: absolute;
+                z-index: 99;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .services-header h2,
+            .stories-header h2,
+            .location-header h2,
+            .approach-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .about h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-final h2 {
+                font-size: 1.5rem;
+            }
+
+            .service-card,
+            .story-card,
+            .location-detail {
+                padding: 30px 20px;
+            }
+
+            .approach-text h3,
+            .location-text h3 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -700,7 +846,7 @@
             <ul style="margin: 0;">
                 <li><a href="#about">O mně</a></li>
                 <li><a href="#services">Služby</a></li>
-                <li><a href="#location">Kde mě najdeš</a></li>
+                <li><a href="#location">Sídlo</a></li>
                 <li><a href="#stories">Příběhy</a></li>
                 <li><a href="#approach">Přístup</a></li>
             </ul>
