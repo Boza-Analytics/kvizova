@@ -144,15 +144,30 @@
             font-size: 3rem;
             font-weight: 700;
             line-height: 1.3;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             color: #3a3a3a;
             letter-spacing: -0.5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #8B6F47;
+            border-radius: 2px;
         }
 
         .hero .subtitle {
             font-size: 1.1rem;
             color: #666;
             margin-bottom: 20px;
+            margin-top: 35px;
             font-weight: 400;
             line-height: 1.8;
         }
@@ -224,6 +239,19 @@
             margin-bottom: 30px;
             color: #3a3a3a;
             line-height: 1.3;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #8B6F47;
+            border-radius: 2px;
         }
 
         .about p {
@@ -231,6 +259,11 @@
             color: #666;
             margin-bottom: 20px;
             line-height: 1.9;
+            margin-top: 0;
+        }
+
+        .about .container > div:last-child {
+            padding-top: 0;
         }
 
         /* Services Section */
@@ -249,14 +282,37 @@
             font-size: 2.3rem;
             font-weight: 700;
             color: #3a3a3a;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
         }
 
-        .services-header p {
-            font-size: 1rem;
-            color: #888;
-            max-width: 600px;
-            margin: 0 auto;
+        .services-header h2::after,
+        .stories-header h2::after,
+        .location-header h2::after,
+        .approach-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #8B6F47;
+            border-radius: 2px;
+        }
+
+        .services-header,
+        .stories-header,
+        .location-header,
+        .approach-header {
+            margin-bottom: 80px;
+        }
+
+        .services-header h2,
+        .stories-header h2,
+        .location-header h2,
+        .approach-header h2 {
+            margin-bottom: 15px;
         }
 
         .services-grid {
@@ -272,6 +328,23 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             transition: all 0.3s ease;
             border-top: 3px solid #8B6F47;
+            position: relative;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8B6F47, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
         }
 
         .service-card:hover {
@@ -428,6 +501,23 @@
             border-radius: 2px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: #8B6F47;
+            transition: left 0.3s ease;
+        }
+
+        .story-card:hover::before {
+            left: 0;
         }
 
         .story-card:hover {
@@ -499,10 +589,24 @@
             font-weight: 700;
             margin-bottom: 25px;
             color: #3a3a3a;
+            position: relative;
+            display: inline-block;
+        }
+
+        .approach-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #8B6F47;
+            border-radius: 2px;
         }
 
         .approach-text ul {
             list-style: none;
+            margin-top: 25px;
         }
 
         .approach-text li {
@@ -537,26 +641,90 @@
         /* CTA Final */
         .cta-final {
             padding: 100px 40px;
-            background: #8B6F47;
+            background: linear-gradient(135deg, #8B6F47 0%, #704d38 100%);
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-final::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-final .container {
+            position: relative;
+            z-index: 2;
         }
 
         .cta-final h2 {
             font-family: 'Lora', serif;
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .cta-final h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: white;
+            margin: 20px auto 0;
+            opacity: 0.6;
         }
 
         .cta-final p {
             font-size: 1.05rem;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.8;
             opacity: 0.95;
+        }
+
+        .cta-final-button {
+            display: inline-block;
+            padding: 16px 50px;
+            background: white;
+            color: #8B6F47;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-final-button:hover {
+            background: #f5f5f5;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
         /* Footer */
@@ -739,6 +907,34 @@
 
             nav ul li:last-child {
                 border-bottom: none;
+                padding-bottom: 20px;
+            }
+
+            nav ul::after {
+                content: '';
+                display: block;
+                padding-bottom: 20px;
+            }
+
+            nav .nav-cta-mobile {
+                display: none;
+                width: 100%;
+                padding: 15px 20px;
+                background: #8B6F47;
+                color: white;
+                border: none;
+                font-weight: 600;
+                font-size: 0.95rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            nav ul.active ~ .nav-cta-mobile {
+                display: block;
+            }
+
+            nav .nav-cta-mobile:hover {
+                background: #704d38;
             }
 
             .nav-cta {
@@ -856,6 +1052,7 @@
                 <span></span>
                 <span></span>
             </button>
+            <button class="nav-cta-mobile" onclick="openConsultation()">Bezplatná konzultace</button>
         </div>
     </nav>
 
@@ -1044,8 +1241,9 @@
     <!-- Final CTA Section -->
     <section class="cta-final">
         <div class="container">
-            <h2>Připraven na první krok?</h2>
-            <p>Zajistíme si čas na konzultaci, kde si ujasníme, co potřebuješ a jak ti mohu pomoci. Bez závazků, bez otázek.</p>
+            <h2>Pojď si to zkusit</h2>
+            <p>Prvních 30 minut je úplně zdarma. Zjistíme, kde stojíš, co tě trápí a jak bychom spolu mohli pracovat. Bez závazků, bez prodeje – jen upřímný rozhovor.</p>
+            <button class="cta-final-button" onclick="openConsultation()">Zarezervovat si čas</button>
         </div>
     </section>
 
