@@ -36,6 +36,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 30px;
+            position: relative;
         }
 
         .logo {
@@ -44,6 +46,7 @@
             font-weight: 700;
             color: #8B6F47;
             letter-spacing: 0.5px;
+            flex-shrink: 0;
         }
 
         nav ul {
@@ -51,7 +54,7 @@
             display: flex;
             gap: 35px;
             flex: 1;
-            margin: 0 60px;
+            align-items: center;
         }
 
         nav a {
@@ -77,12 +80,44 @@
             border: none;
             cursor: pointer;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .nav-cta:hover {
             background: #704d38;
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(139, 111, 71, 0.25);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2.5px;
+            background: #3a3a3a;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* Container */
@@ -134,17 +169,14 @@
             margin-top: 60px;
         }
 
-        .hero-image {
+        .hero-image-wrapper img {
             width: 100%;
             max-width: 600px;
-            height: 450px;
-            background: linear-gradient(135deg, #eae4dd 0%, #ddd5ce 100%);
+            height: auto;
             border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: block;
+            margin: 0 auto;
         }
 
         .placeholder-text {
@@ -176,6 +208,13 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .about h2 {
@@ -648,49 +687,19 @@
             box-shadow: 0 8px 20px rgba(139, 111, 71, 0.25);
         }
 
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2.5px;
-            background: #3a3a3a;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Mobile */
+        @media (max-width: 900px) {
             nav {
                 padding: 15px 20px;
             }
 
             nav .container {
-                padding: 0;
-                flex-wrap: nowrap;
+                gap: 15px;
             }
 
             .logo {
                 font-size: 1.1rem;
+                flex: 1;
             }
 
             .hamburger {
@@ -700,18 +709,19 @@
 
             nav ul {
                 display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 60px;
                 left: 0;
                 right: 0;
                 background: white;
                 flex-direction: column;
                 gap: 0;
-                padding: 20px;
+                padding: 0;
                 border-top: 1px solid #f0f0f0;
                 box-shadow: 0 8px 16px rgba(0,0,0,0.1);
                 width: 100%;
                 margin: 0;
+                z-index: 99;
             }
 
             nav ul.active {
@@ -719,8 +729,12 @@
             }
 
             nav ul li {
-                padding: 12px 0;
+                padding: 15px 20px;
                 border-bottom: 1px solid #f0f0f0;
+            }
+
+            nav ul li a {
+                font-size: 0.95rem;
             }
 
             nav ul li:last-child {
@@ -751,8 +765,7 @@
             .services-header h2,
             .stories-header h2,
             .location-header h2,
-            .approach-header h2,
-            .services-header h2 {
+            .approach-header h2 {
                 font-size: 1.8rem;
             }
 
@@ -783,21 +796,8 @@
                 height: 300px;
             }
 
-            .hero-image {
-                height: 350px;
-            }
-
             .story-image {
                 height: 200px;
-            }
-
-            nav {
-                position: relative;
-            }
-
-            nav ul {
-                position: absolute;
-                z-index: 99;
             }
         }
 
@@ -841,9 +841,9 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
+        <div class="container">
             <div class="logo">~ Dominika Kvízová</div>
-            <ul style="margin: 0;">
+            <ul id="navMenu">
                 <li><a href="#about">O mně</a></li>
                 <li><a href="#services">Služby</a></li>
                 <li><a href="#location">Sídlo</a></li>
@@ -851,6 +851,11 @@
                 <li><a href="#approach">Přístup</a></li>
             </ul>
             <button class="nav-cta" onclick="openConsultation()">Bezplatná konzultace</button>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -862,7 +867,7 @@
             <p class="description">Bez diet, bez nereálných slibů. Jen postupné kroky, které se ti podaří dodržet, a podpora, na kterou se můžeš spolehnout. Stojím při tobě i v momentě, kdy přestaneš věřit sám sobě.</p>
             
             <div class="hero-image-wrapper">
-                <img src="/main.png" alt="Dominika Kvízová" style="width: 100%; max-width: 600px; height: auto; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: block; margin: 0 auto;">
+                <img src="main.png" alt="Dominika Kvízová" onerror="this.style.display='none'">
             </div>
         </div>
     </section>
@@ -871,10 +876,7 @@
     <section class="about" id="about">
         <div class="container">
             <div class="about-image">
-                <div class="placeholder-text">
-                    <div style="font-size: 4rem; margin-bottom: 10px;">📸</div>
-                    Fotografie nebo portrét
-                </div>
+                <img src="about-photo.png" alt="Dominika Kvízová" onerror="this.parentElement.innerHTML='<div class=placeholder-text><div style=font-size:4rem;margin-bottom:10px>📸</div>Fotografie nebo portrét</div>'">
             </div>
             <div>
                 <h2>Kdo jsem</h2>
@@ -1082,6 +1084,8 @@
 
     <script>
         const modal = document.getElementById('consultationModal');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
 
         function openConsultation() {
             modal.style.display = 'block';
@@ -1090,6 +1094,19 @@
         function closeConsultation() {
             modal.style.display = 'none';
         }
+
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
 
         window.onclick = function(event) {
             if (event.target == modal) {
