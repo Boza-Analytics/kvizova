@@ -56,6 +56,10 @@
             align-items: center;
         }
 
+        nav .mobile-cta {
+            display: none;
+        }
+
         nav a {
             text-decoration: none;
             color: #3a3a3a;
@@ -809,10 +813,21 @@
 
             nav ul li:last-child {
                 border-bottom: none;
+                padding-top: 20px;
+                border-top: 1px solid #f0f0f0;
             }
 
             nav ul li a {
                 font-size: 0.95rem;
+            }
+
+            nav .mobile-cta a {
+                color: #8B6F47;
+                font-weight: 700;
+            }
+
+            nav .mobile-cta {
+                display: block;
             }
 
             .hamburger {
@@ -918,10 +933,10 @@
             <ul id="navMenu">
                 <li><a href="#about">O mně</a></li>
                 <li><a href="#services">Služby</a></li>
-                <li><a href="#location">Sídlo</a></li>
+                <li><a href="#location">Kde mě najdeš</a></li>
                 <li><a href="#stories">Příběhy</a></li>
                 <li><a href="#approach">Přístup</a></li>
-                <li><a href="#" onclick="openConsultation(); return false;" style="color: #8B6F47; font-weight: 700;">Pojď to zkusit</a></li>
+                <li class="mobile-cta"><a href="#" onclick="openConsultation(); return false;">Pojď to zkusit</a></li>
             </ul>
             <button class="nav-cta" onclick="openConsultation()">Pojď to zkusit</button>
             <button class="hamburger" id="hamburger" onclick="toggleMenu()">
