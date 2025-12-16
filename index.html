@@ -1,973 +1,1029 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dominika Kvízová - Výživové Poradenství</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-family='Arial'>🌿</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #2F3E34;
-            line-height: 1.7;
-            background: #FAF8F4;
-        }
-
-        /* Navigation */
-        nav {
-            background: #FAF8F4;
-            padding: 25px 60px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(47, 62, 52, 0.08);
-        }
-
-        nav .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: #2F3E34;
-            letter-spacing: 1px;
-            flex-shrink: 0;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 45px;
-            flex: 1;
-            align-items: center;
-        }
-
-        nav .mobile-cta {
-            display: none;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #2F3E34;
-            font-size: 0.95rem;
-            font-weight: 400;
-            transition: color 0.3s ease;
-            letter-spacing: 0.3px;
-        }
-
-        nav a:hover {
-            color: #9FB3A2;
-        }
-
-        .nav-cta {
-            background: #2F3E34;
-            color: #FAF8F4;
-            padding: 14px 32px;
-            border-radius: 0;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-            flex-shrink: 0;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-cta:hover {
-            background: #9FB3A2;
-            transform: translateY(-1px);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 6px;
-            background: none;
-            border: none;
-            padding: 0;
-            flex-shrink: 0;
-        }
-
-        .hamburger span {
-            width: 28px;
-            height: 2px;
-            background: #2F3E34;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(9px, 9px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 60px;
-        }
-
-        /* Hero */
-        .hero {
-            background: #FAF8F4;
-            padding: 120px 60px 140px;
-        }
-
-        .hero .container {
-            max-width: 1200px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 30px;
-            color: #2F3E34;
-            letter-spacing: 0px;
-        }
-
-        .hero .subtitle {
-            font-size: 1.2rem;
-            color: #2F3E34;
-            margin-bottom: 50px;
-            font-weight: 300;
-            line-height: 1.8;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.85;
-        }
-
-        .hero-cta {
-            display: inline-block;
-            padding: 18px 50px;
-            background: #2F3E34;
-            color: #FAF8F4;
-            text-decoration: none;
-            border-radius: 0;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            letter-spacing: 1px;
-            margin-top: 20px;
-        }
-
-        .hero-cta:hover {
-            background: #9FB3A2;
-            transform: translateY(-2px);
-        }
-
-        /* About Section */
-        .about {
-            background: #E6E1DA;
-            padding: 140px 60px;
-        }
-
-        .about .container {
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 100px;
-            align-items: center;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 550px;
-            background: linear-gradient(135deg, #D4C5A6 0%, #9FB3A2 100%);
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .about h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            margin-bottom: 40px;
-            color: #2F3E34;
-            line-height: 1.2;
-            letter-spacing: 0px;
-        }
-
-        .about p {
-            font-size: 1.05rem;
-            color: #2F3E34;
-            margin-bottom: 24px;
-            line-height: 1.9;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        .about-list {
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .about-list-item {
-            font-size: 0.95rem;
-            color: #2F3E34;
-            padding-left: 20px;
-            position: relative;
-            opacity: 0.85;
-        }
-
-        .about-list-item::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: #9FB3A2;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 140px 60px;
-            background: #FAF8F4;
-        }
-
-        .services-header {
-            text-align: center;
-            margin-bottom: 100px;
-        }
-
-        .services-header h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            color: #2F3E34;
-            margin-bottom: 20px;
-        }
-
-        .services-header p {
-            font-size: 1.05rem;
-            color: #2F3E34;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.7;
-            font-weight: 300;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: #E6E1DA;
-            padding: 60px 50px;
-            border-radius: 0;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            background: #D4C5A6;
-        }
-
-        .service-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-            color: #2F3E34;
-        }
-
-        .service-price {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #9FB3A2;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-        }
-
-        .service-card p {
-            color: #2F3E34;
-            font-size: 1rem;
-            line-height: 1.8;
-            font-weight: 300;
-            opacity: 0.85;
-        }
-
-        /* Philosophy Section */
-        .philosophy {
-            padding: 140px 60px;
-            background: #E6E1DA;
-        }
-
-        .philosophy .container {
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 100px;
-            align-items: center;
-        }
-
-        .philosophy h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            margin-bottom: 40px;
-            color: #2F3E34;
-        }
-
-        .philosophy-list {
-            list-style: none;
-        }
-
-        .philosophy-list li {
-            padding: 16px 0;
-            padding-left: 30px;
-            position: relative;
-            color: #2F3E34;
-            font-size: 1.05rem;
-            line-height: 1.7;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        .philosophy-list li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: #9FB3A2;
-            font-weight: 400;
-        }
-
-        .philosophy-image {
-            width: 100%;
-            height: 500px;
-            background: linear-gradient(135deg, #9FB3A2 0%, #D4C5A6 100%);
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .philosophy-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Why Work Section */
-        .why-work {
-            padding: 140px 60px;
-            background: #FAF8F4;
-        }
-
-        .why-work-header {
-            text-align: center;
-            margin-bottom: 100px;
-        }
-
-        .why-work-header h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            color: #2F3E34;
-        }
-
-        .why-work-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .why-work-item {
-            text-align: center;
-        }
-
-        .why-work-item h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-            color: #2F3E34;
-        }
-
-        .why-work-item p {
-            color: #2F3E34;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            font-weight: 300;
-            opacity: 0.8;
-        }
-
-        /* CTA Final */
-        .cta-final {
-            padding: 140px 60px;
-            background: #2F3E34;
-            color: #FAF8F4;
-            text-align: center;
-        }
-
-        .cta-final h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
-
-        .cta-final p {
-            font-size: 1.15rem;
-            margin-bottom: 50px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .cta-final-button {
-            display: inline-block;
-            padding: 18px 50px;
-            background: #FAF8F4;
-            color: #2F3E34;
-            text-decoration: none;
-            border-radius: 0;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            letter-spacing: 1px;
-        }
-
-        .cta-final-button:hover {
-            background: #9FB3A2;
-            color: #FAF8F4;
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            background: #2F3E34;
-            color: rgba(250, 248, 244, 0.6);
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 0.85rem;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(47, 62, 52, 0.7);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background-color: #FAF8F4;
-            margin: 5% auto;
-            padding: 60px;
-            border-radius: 0;
-            width: 90%;
-            max-width: 600px;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close {
-            color: #9FB3A2;
-            float: right;
-            font-size: 32px;
-            font-weight: 300;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            line-height: 1;
-        }
-
-        .close:hover {
-            color: #2F3E34;
-        }
-
-        .modal h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #2F3E34;
-            font-weight: 400;
-        }
-
-        .modal-intro {
-            color: #2F3E34;
-            margin-bottom: 40px;
-            font-size: 1rem;
-            opacity: 0.7;
-            font-weight: 300;
-        }
-
-        .form-group {
-            margin-bottom: 28px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: #2F3E34;
-            font-size: 0.9rem;
-            letter-spacing: 0.3px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid rgba(47, 62, 52, 0.2);
-            border-radius: 0;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            background: #FAF8F4;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #9FB3A2;
-        }
-
-        .modal-button {
-            width: 100%;
-            padding: 16px;
-            background: #2F3E34;
-            color: #FAF8F4;
-            border: none;
-            border-radius: 0;
-            font-weight: 500;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-        }
-
-        .modal-button:hover {
-            background: #9FB3A2;
-            transform: translateY(-1px);
-        }
-
-        /* Mobile */
-        @media (max-width: 900px) {
-            nav {
-                padding: 20px 30px;
-            }
-
-            nav ul {
-                display: none;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: #FAF8F4;
-                flex-direction: column;
-                gap: 0;
-                padding: 30px 0;
-                border-top: 1px solid rgba(47, 62, 52, 0.1);
-                width: 100%;
-                margin: 0;
-                z-index: 99;
-                flex: none;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            nav ul li {
-                padding: 18px 30px;
-            }
-
-            nav ul li:last-child {
-                padding-top: 30px;
-                border-top: 1px solid rgba(47, 62, 52, 0.1);
-            }
-
-            nav .mobile-cta a {
-                color: #2F3E34;
-                font-weight: 600;
-            }
-
-            nav .mobile-cta {
-                display: block;
-            }
-
-            .hamburger {
-                display: flex;
-                order: 3;
-            }
-
-            .nav-cta {
-                display: none;
-            }
-
-            .container {
-                padding: 0 30px;
-            }
-
-            .hero {
-                padding: 80px 30px 100px;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about,
-            .services,
-            .philosophy,
-            .why-work,
-            .cta-final {
-                padding: 80px 30px;
-            }
-
-            .about .container,
-            .philosophy .container {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .why-work-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .about-image,
-            .philosophy-image {
-                height: 350px;
-            }
-
-            .about-list {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-final h2 {
-                font-size: 2.2rem;
-            }
-
-            .modal-content {
-                padding: 40px 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .services-header h2,
-            .why-work-header h2,
-            .about h2,
-            .philosophy h2 {
-                font-size: 2rem;
-            }
-
-            .cta-final h2 {
-                font-size: 1.8rem;
-            }
-
-            .service-card {
-                padding: 40px 30px;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dominika Kvízová - Výživové Poradenství</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-family='Arial'>🌿</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2F3E34;
+            line-height: 1.7;
+            background: #FAF8F4;
+        }
+
+        /* Navigation */
+        nav {
+            background: #FAF8F4;
+            padding: 25px 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(47, 62, 52, 0.08);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2F3E34;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 45px;
+            flex: 1;
+            align-items: center;
+        }
+
+        nav .mobile-cta {
+            display: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2F3E34;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            color: #9FB3A2;
+        }
+
+        .nav-cta {
+            background: #2F3E34;
+            color: #FAF8F4;
+            padding: 14px 32px;
+            border-radius: 0;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-cta:hover {
+            background: #9FB3A2;
+            transform: translateY(-1px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            background: none;
+            border: none;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: #2F3E34;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(9px, 9px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        /* Hero */
+        .hero {
+            background: #FAF8F4;
+            padding: 120px 60px 140px;
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 4rem;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: #2F3E34;
+            letter-spacing: 0px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: #2F3E34;
+            margin-bottom: 50px;
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.85;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 18px 50px;
+            background: #2F3E34;
+            color: #FAF8F4;
+            text-decoration: none;
+            border-radius: 0;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .hero-cta:hover {
+            background: #9FB3A2;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            background: #E6E1DA;
+            padding: 140px 60px;
+        }
+
+        .about .container {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 550px;
+            background: linear-gradient(135deg, #D4C5A6 0%, #9FB3A2 100%);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 500;
+            margin-bottom: 40px;
+            color: #2F3E34;
+            line-height: 1.2;
+            letter-spacing: 0px;
+        }
+
+        .about p {
+            font-size: 1.05rem;
+            color: #2F3E34;
+            margin-bottom: 24px;
+            line-height: 1.9;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .about-list {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .about-list-item {
+            font-size: 0.95rem;
+            color: #2F3E34;
+            padding-left: 20px;
+            position: relative;
+            opacity: 0.85;
+        }
+
+        .about-list-item::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #9FB3A2;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 140px 60px;
+            background: #FAF8F4;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .services-header h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 500;
+            color: #2F3E34;
+            margin-bottom: 20px;
+        }
+
+        .services-header p {
+            font-size: 1.05rem;
+            color: #2F3E34;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #E6E1DA;
+            padding: 60px 50px;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            background: #D4C5A6;
+        }
+
+        .service-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #2F3E34;
+        }
+
+        .service-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #9FB3A2;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .service-card p {
+            color: #2F3E34;
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 300;
+            opacity: 0.85;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .service-card ul li {
+            position: relative;
+            padding: 5px 0 5px 20px;
+            color: #2F3E34;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 300;
+            opacity: 0.85;
+        }
+
+        .service-card ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #9FB3A2;
+            font-weight: 400;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            padding: 140px 60px;
+            background: #E6E1DA;
+        }
+
+        .philosophy .container {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .philosophy h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 500;
+            margin-bottom: 40px;
+            color: #2F3E34;
+        }
+
+        .philosophy-list {
+            list-style: none;
+        }
+
+        .philosophy-list li {
+            padding: 16px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #2F3E34;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .philosophy-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #9FB3A2;
+            font-weight: 400;
+        }
+
+        .philosophy-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #9FB3A2 0%, #D4C5A6 100%);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .philosophy-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Why Work Section */
+        .why-work {
+            padding: 140px 60px;
+            background: #FAF8F4;
+        }
+
+        .why-work-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .why-work-header h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 500;
+            color: #2F3E34;
+        }
+
+        .why-work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .why-work-item {
+            text-align: center;
+        }
+
+        .why-work-item h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #2F3E34;
+        }
+
+        .why-work-item p {
+            color: #2F3E34;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        /* CTA Final */
+        .cta-final {
+            padding: 140px 60px;
+            background: #2F3E34;
+            color: #FAF8F4;
+            text-align: center;
+        }
+
+        .cta-final h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .cta-final p {
+            font-size: 1.15rem;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .cta-final-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: #FAF8F4;
+            color: #2F3E34;
+            text-decoration: none;
+            border-radius: 0;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        .cta-final-button:hover {
+            background: #9FB3A2;
+            color: #FAF8F4;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #2F3E34;
+            color: rgba(250, 248, 244, 0.6);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(47, 62, 52, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #FAF8F4;
+            margin: 5% auto;
+            padding: 60px;
+            border-radius: 0;
+            width: 90%;
+            max-width: 600px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: #9FB3A2;
+            float: right;
+            font-size: 32px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #2F3E34;
+        }
+
+        .modal h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2F3E34;
+            font-weight: 500;
+        }
+
+        .modal-intro {
+            color: #2F3E34;
+            margin-bottom: 40px;
+            font-size: 1rem;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #2F3E34;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(47, 62, 52, 0.2);
+            border-radius: 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #FAF8F4;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #9FB3A2;
+        }
+
+        .modal-button {
+            width: 100%;
+            padding: 16px;
+            background: #2F3E34;
+            color: #FAF8F4;
+            border: none;
+            border-radius: 0;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .modal-button:hover {
+            background: #9FB3A2;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            nav ul {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #FAF8F4;
+                flex-direction: column;
+                gap: 0;
+                padding: 30px 0;
+                border-top: 1px solid rgba(47, 62, 52, 0.1);
+                width: 100%;
+                margin: 0;
+                z-index: 99;
+                flex: none;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                padding: 18px 30px;
+            }
+
+            nav ul li:last-child {
+                padding-top: 30px;
+                border-top: 1px solid rgba(47, 62, 52, 0.1);
+            }
+
+            nav .mobile-cta a {
+                color: #2F3E34;
+                font-weight: 600;
+            }
+
+            nav .mobile-cta {
+                display: block;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 3;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .container {
+                padding: 0 30px;
+            }
+
+            .hero {
+                padding: 80px 30px 100px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about,
+            .services,
+            .philosophy,
+            .why-work,
+            .cta-final {
+                padding: 80px 30px;
+            }
+
+            .about .container,
+            .philosophy .container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .why-work-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image,
+            .philosophy-image {
+                height: 350px;
+            }
+
+            .about-list {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-final h2 {
+                font-size: 2.2rem;
+            }
+
+            .modal-content {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .services-header h2,
+            .why-work-header h2,
+            .about h2,
+            .philosophy h2 {
+                font-size: 2rem;
+            }
+
+            .cta-final h2 {
+                font-size: 1.8rem;
+            }
+
+            .service-card {
+                padding: 40px 30px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="logo">Dominika Kvízová</div>
-            <ul id="navMenu">
-                <li><a href="#about">O mně</a></li>
-                <li><a href="#services">Služby & ceník</a></li>
-                <li><a href="#philosophy">Jak pracuji</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <li class="mobile-cta"><a href="#" onclick="openConsultation(); return false;">Objednat konzultaci</a></li>
-            </ul>
-            <button class="nav-cta" onclick="openConsultation()">Objednat konzultaci</button>
-            <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+    <nav>
+        <div class="container">
+            <div class="logo">Dominika Kvízová</div>
+            <ul id="navMenu">
+                <li><a href="#about">O mně</a></li>
+                <li><a href="#services">Služby & ceník</a></li>
+                <li><a href="#philosophy">Jak pracuji</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <li class="mobile-cta"><a href="#" onclick="openConsultation(); return false;">Objednat konzultaci</a></li>
+            </ul>
+            <button class="nav-cta" onclick="openConsultation()">Objednat konzultaci</button>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Tvoje cesta ke změně<br>začíná tady.</h1>
-            <p class="subtitle">Bez extrémů, bez diet. S podporou, která dává smysl<br>a umožní růst vlastním tempem.</p>
-            <button class="hero-cta" onclick="openConsultation()">Objednat konzultaci</button>
-        </div>
-    </section>
+    <section class="hero">
+        <div class="container">
+            <h1>Tvoje cesta ke změně<br>začíná tady.</h1>
+            <p class="subtitle">Bez extrémů, bez diet. S podporou, která dává smysl<br>a umožní růst vlastním tempem.</p>
+            <button class="hero-cta" onclick="openConsultation()">Objednat konzultaci</button>
+        </div>
+    </section>
 
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-image">
-                <img src="about-photo.png" alt="Dominika Kvízová" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop'; this.onerror=null;">
-            </div>
-            <div>
-                <h2>Kdo jsem</h2>
-                <p>Jsem Dominika Kvízová, výživová poradkyně. Pomáhám lidem porozumět tělu, tvořit návyky a cítit se jistě na své cestě ke zdravějšímu životu.</p>
-                
-                <div class="about-list">
-                    <div class="about-list-item">výživa a návyky</div>
-                    <div class="about-list-item">vztah k jídlu</div>
-                    <div class="about-list-item">diagnostika InBody</div>
-                    <div class="about-list-item">mentální rovnováha</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-image">
+                <img src="about-photo.png" alt="Dominika Kvízová" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop'; this.onerror=null;">
+            </div>
+            <div>
+                <h2>Kdo jsem</h2>
+                <p>Jsem Dominika Kvízová, výživová poradkyně. Pomáhám lidem porozumět tělu, tvořit návyky a cítit se jistě na své cestě ke zdravějšímu životu.</p>
+                
+                <p style="font-weight: 500; margin-bottom: 30px; line-height: 1.8; opacity: 1;">
+                    Mým cílem je vytvořit pro tebe bezpečný prostor, kde nebudeš na změnu sám.
+                    Žádné extrémy, žádné diety, žádné nesplnitelné sliby.
+                    Jen postupné kroky, které dávají smysl a podpora, na kterou se můžeš spolehnout.
+                </p>
 
-    <section class="why-work">
-        <div class="container">
-            <div class="why-work-header">
-                <h2>Proč se mnou klienti spolupracují</h2>
-            </div>
+                <div class="about-list">
+                    <div class="about-list-item">výživa a návyky</div>
+                    <div class="about-list-item">vztah k jídlu</div>
+                    <div class="about-list-item">diagnostika InBody</div>
+                    <div class="about-list-item">mentální rovnováha</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="why-work-grid">
-                <div class="why-work-item">
-                    <h3>Empatie a lidský přístup</h3>
-                    <p>Rozumím tomu, že změna není jednoduchá. Stojím při tobě v každém kroku.</p>
-                </div>
+    <section class="why-work">
+        <div class="container">
+            <div class="why-work-header">
+                <h2>Proč se mnou klienti spolupracují</h2>
+            </div>
 
-                <div class="why-work-item">
-                    <h3>Otevřená komunikace</h3>
-                    <p>Mluvíme spolu upřímně a bez příkras. Žádné slibování nemožného.</p>
-                </div>
+            <div class="why-work-grid">
+                <div class="why-work-item">
+                    <h3>Empatie a lidský přístup</h3>
+                    <p>Rozumím tomu, že změna není jednoduchá. Stojím při tobě v každém kroku.</p>
+                </div>
 
-                <div class="why-work-item">
-                    <h3>Spolehlivé vedení</h3>
-                    <p>Dostaneš jasnou cestu a podporu, kterou můžeš skutečně sledovat.</p>
-                </div>
+                <div class="why-work-item">
+                    <h3>Otevřená komunikace</h3>
+                    <p>Mluvíme spolu upřímně a bez příkras. Žádné slibování nemožného.</p>
+                </div>
 
-                <div class="why-work-item">
-                    <h3>Žádné extrémy</h3>
-                    <p>Věřím v postupné změny, které vydrží. Ne v drastické diety.</p>
-                </div>
+                <div class="why-work-item">
+                    <h3>Spolehlivé vedení</h3>
+                    <p>Dostaneš jasnou cestu a podporu, kterou můžeš skutečně sledovat.</p>
+                </div>
 
-                <div class="why-work-item">
-                    <h3>Odborný vhled</h3>
-                    <p>Komplexní znalosti podané srozumitelně a prakticky.</p>
-                </div>
+                <div class="why-work-item">
+                    <h3>Žádné extrémy</h3>
+                    <p>Věřím v postupné změny, které vydrží. Ne v drastické diety.</p>
+                </div>
 
-                <div class="why-work-item">
-                    <h3>Bezpečný prostor</h3>
-                    <p>Bez tlaku, bez soudů. Jen podpora a pochopení.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="why-work-item">
+                    <h3>Odborný vhled</h3>
+                    <p>Komplexní znalosti podané srozumitelně a prakticky.</p>
+                </div>
 
-    <section class="services" id="services">
-        <div class="container">
-            <div class="services-header">
-                <h2>Služby & ceník</h2>
-                <p>Různé cesty k cíli – vyber si to, co ti vyhovuje</p>
-            </div>
+                <div class="why-work-item">
+                    <h3>Bezpečný prostor</h3>
+                    <p>Bez tlaku, bez soudů. Jen podpora a pochopení.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Diagnostika InBody</h3>
-                    <div class="service-price">700 Kč</div>
-                    <p>Přesné měření složení těla s detailním vysvětlením výsledků. Zjistíš, kde opravdu stojíš a jakými kroky se můžeš posunout dál.</p>
-                </div>
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-header">
+                <h2>Služby & ceník</h2>
+                <p>Různé cesty k cíli – vyber si to, co ti vyhovuje</p>
+            </div>
 
-                <div class="service-card">
-                    <h3>Individuální plán</h3>
-                    <div class="service-price">3 500 Kč</div>
-                    <p>Nutriční plán na míru s analýzou tvých návyků, konkrétními doporučeními a systémem, který opravdu zvládneš dodržovat.</p>
-                </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Diagnostika InBody</h3>
+                    <div class="service-price">700 Kč</div>
+                    <p>Přesné měření složení těla s detailním vysvětlením výsledků. Zjistíš, kde opravdu stojíš a jakými kroky se můžeš posunout dál.</p>
+                </div>
 
-                <div class="service-card">
-                    <h3>Jednorázová konzultace</h3>
-                    <div class="service-price">1 200 Kč</div>
-                    <p>60minutové setkání zaměřené na konkrétní téma. Praktické rady, které můžeš použít okamžitě.</p>
-                </div>
+                <div class="service-card">
+                    <h3>Individuální plán</h3>
+                    <div class="service-price">3 500 Kč</div>
+                    <p>Nutriční plán na míru s analýzou tvých návyků, konkrétními doporučeními a systémem, který opravdu zvládneš dodržovat.</p>
+                </div>
 
-                <div class="service-card">
-                    <h3>Měsíční koučink</h3>
-                    <div class="service-price">6 900 Kč / měsíc</div>
-                    <p>Komplexní program s diagnostikou, plánem, pravidelným vedením a emailovou podporou. Opravdová změna se skutečnou podporou.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="service-card">
+                    <h3>Jednorázová konzultace</h3>
+                    <div class="service-price">1 200 Kč</div>
+                    <p>60minutové setkání zaměřené na konkrétní téma. Praktické rady, které můžeš použít okamžitě.</p>
+                </div>
 
-    <section class="philosophy" id="philosophy">
-        <div class="container">
-            <div>
-                <h2>Jak pracuji</h2>
-                <ul class="philosophy-list">
-                    <li>Žádné striktní zákazy a nepřirozená pravidla</li>
-                    <li>Bezpečný prostor bez tlaku a soudů</li>
-                    <li>Edukace, kterou opravdu pochopíš</li>
-                    <li>Realistické plány, které se dají skutečně dodržet</li>
-                    <li>Podpora i v momentech, kdy sám sobě nevěříš</li>
-                    <li>Fokus na dlouhodobé změny</li>
-                    <li>Věřím, že změna přichází postupně</li>
+                <div class="service-card">
+                    <h3>🌱 Individuální měsíční spolupráce</h3>
+                    <div class="service-price">5 500 Kč / měsíc</div>
+                    <p>Komplexní vedení pro ty, kdo chtějí skutečnou změnu s podporou.</p>
+                    <ul>
+                        <li>vstupní konzultaci</li>
+                        <li>individuální nutriční plán / vedení</li>
+                        <li>průběžné úpravy podle reality</li>
+                        <li>kontrolní konzultace</li>
+                        <li>průběžnou podporu (email / zprávy)</li>
+                        <li>kontrolní InBody dle potřeby</li>
+                        <li>edukační materiály (návyky, práce s hladem, emoce, dlouhodobá udržitelnost)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="max-width: 700px; margin: 80px auto 0; text-align: center;">
+                <p style="font-style: italic; font-weight: 400; font-size: 1rem; opacity: 0.8;">
+                    Edukační materiály jsou součástí každé služby a slouží k lepšímu pochopení souvislostí.
+                </p>
+                <h4 style="font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 500; margin-top: 30px; margin-bottom: 20px; color: #2F3E34;">
+                    Praktické materiály v ceně programu:
+                </h4>
+                <ul class="philosophy-list" style="list-style: none; padding-left: 0; display: inline-block; text-align: left; opacity: 1;">
+                    <li>Startovací manuál „Začátek vaší nové cesty ke změně“</li>
+                    <li>Jednoduché recepty</li>
+                    <li>Měsíční pracovní list (každý měsíc nové téma)</li>
+                    <li>Praktické tipy pro zvládání stresu</li>
+                    <li>Krátké odborné vzdělávací materiály</li>
                 </ul>
             </div>
+        </div>
+    </section>
 
-            <div class="philosophy-image">
-                <img src="/kancelar.png" alt="Zdravý životní styl" onerror="this.parentElement.innerHTML='<div style=color:#9FB3A2;font-size:3rem>🌿</div>'">
-            </div>
-        </div>
-    </section>
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <div>
+                <h2>Jak pracuji</h2>
+                <ul class="philosophy-list">
+                    <li>Žádné striktní zákazy a nepřirozená pravidla</li>
+                    <li>Bezpečný prostor bez tlaku a soudů</li>
+                    <li>Edukace, kterou opravdu pochopíš</li>
+                    <li>Realistické plány, které se dají skutečně dodržet</li>
+                    <li>Podpora i v momentech, kdy sám sobě nevěříš</li>
+                    <li>Fokus na dlouhodobé změny</li>
+                    <li>Věřím, že změna přichází postupně</li>
+                </ul>
+            </div>
 
-    <section class="cta-final" id="contact">
-        <div class="container">
-            <h2>Objednat konzultaci</h2>
-            <p>Prvních 30 minut je úplně zdarma. Zjistíme, kde stojíš, co tě trápí a jak bychom spolu mohli pracovat. Bez závazků, bez prodeje – jen upřímný rozhovor.</p>
-            <button class="cta-final-button" onclick="openConsultation()">Zarezervovat si čas</button>
-        </div>
-    </section>
+            <div class="philosophy-image">
+                <img src="/kancelar.png" alt="Zdravý životní styl" onerror="this.parentElement.innerHTML='<div style=color:#9FB3A2;font-size:3rem>🌿</div>'">
+            </div>
+        </div>
+    </section>
 
-    <div id="consultationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeConsultation()">&times;</span>
-            <h2>Bezplatná konzultace</h2>
-            <p class="modal-intro">Vyplň si formulář a my ti brzy napíšeme.</p>
-            <form onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <label for="name">Jméno *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Telefon</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-                <div class="form-group">
-                    <label for="message">Co tě trápí? (volitelně)</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Popiš mi stručně..."></textarea>
-                </div>
-                <button type="submit" class="modal-button">Zaslat žádost</button>
-            </form>
-        </div>
-    </div>
+    <section class="cta-final" id="contact">
+        <div class="container">
+            <h2>Objednat konzultaci</h2>
+            <p>Prvních 30 minut je úplně zdarma. Zjistíme, kde stojíš, co tě trápí a jak bychom spolu mohli pracovat. Bez závazků, bez prodeje – jen upřímný rozhovor.</p>
+            <button class="cta-final-button" onclick="openConsultation()">Zarezervovat si čas</button>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Dominika Kvízová – Výživové poradenství. Všechna práva vyhrazena.</p>
-    </footer>
+    <div id="consultationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeConsultation()">&times;</span>
+            <h2>Bezplatná konzultace </h2>
+            <p class="modal-intro">Vyplň si formulář a my ti brzy napíšeme.</p>
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Jméno *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Co tě trápí? (volitelně)</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Popiš mi stručně..."></textarea>
+                </div>
+                <button type="submit" class="modal-button">Zaslat žádost</button>
+            </form>
+        </div>
+    </div>
 
-    <script>
-        const modal = document.getElementById('consultationModal');
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
+    <footer>
+        <p>&copy; 2025 Dominika Kvízová – Výživové poradenství. Všechna práva vyhrazena.</p>
+    </footer>
 
-        function openConsultation() {
-            modal.style.display = 'block';
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
+    <script>
+        const modal = document.getElementById('consultationModal');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
 
-        function closeConsultation() {
-            modal.style.display = 'none';
-        }
+        function openConsultation() {
+            modal.style.display = 'block';
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
 
-        function toggleMenu() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        }
+        function closeConsultation() {
+            modal.style.display = 'none';
+        }
 
-        document.querySelectorAll('#navMenu a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (link.href !== '#') {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
-            });
-        });
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.href !== '#') {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
 
-        function handleSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            alert(`Díky ${name}! Brzy ti pošleme více informací.`);
-            closeConsultation();
-            document.querySelector('form').reset();
-        }
-    </script>
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Díky ${name}! Brzy ti pošleme více informací.`);
+            closeConsultation();
+            document.querySelector('form').reset();
+        }
+    </script>
 </body>
 </html>
