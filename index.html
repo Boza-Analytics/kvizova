@@ -9,6 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        
+        @media (max-width: 900px) {
+    .hero {
+        background-image: none !important; /* Odstraní fotku na mobilu */
+        background-color: #FAF8F4; /* Ponechá jen barvu pozadí */
+        padding: 60px 20px; /* Můžeš trochu zmenšit padding */
+    }
+}
+
+        
         * {
             margin: 0;
             padding: 0;
@@ -632,6 +642,7 @@
             height: 100%;
             background-color: rgba(47, 62, 52, 0.7);
             animation: fadeIn 0.3s ease;
+            overflow-y: auto; 
         }
 
         @keyframes fadeIn {
@@ -845,6 +856,7 @@
 
             .modal-content {
                 padding: 40px 30px;
+                margin: 20px auto;
             }
         }
 
