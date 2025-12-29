@@ -22,6 +22,10 @@
             background: #FAF8F4;
         }
 
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+        }
+
         /* Navigation */
         nav {
             background: #FAF8F4;
@@ -134,7 +138,7 @@
 
         /* Hero */
         .hero {
-            background: #FAF8F4;
+            background: #FAF8F4 url('/bcg.png') center/cover no-repeat;
             padding: 120px 60px 140px;
         }
 
@@ -146,7 +150,6 @@
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 4rem;
-            font-weight: 400;
             line-height: 1.2;
             margin-bottom: 30px;
             color: #2F3E34;
@@ -220,7 +223,6 @@
         .about h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
-            font-weight: 400;
             margin-bottom: 40px;
             color: #2F3E34;
             line-height: 1.2;
@@ -272,7 +274,6 @@
         .services-header h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
-            font-weight: 400;
             color: #2F3E34;
             margin-bottom: 20px;
         }
@@ -309,7 +310,6 @@
         .service-card h3 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
-            font-weight: 500;
             margin-bottom: 16px;
             color: #2F3E34;
         }
@@ -347,7 +347,6 @@
         .philosophy h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
-            font-weight: 400;
             margin-bottom: 40px;
             color: #2F3E34;
         }
@@ -405,7 +404,6 @@
         .why-work-header h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
-            font-weight: 400;
             color: #2F3E34;
         }
 
@@ -424,7 +422,6 @@
         .why-work-item h3 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
-            font-weight: 500;
             margin-bottom: 16px;
             color: #2F3E34;
         }
@@ -435,6 +432,83 @@
             line-height: 1.8;
             font-weight: 300;
             opacity: 0.8;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 140px 60px;
+            background: #FAF8F4;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .faq-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: #2F3E34;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(47, 62, 52, 0.15);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 24px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #2F3E34;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #9FB3A2;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 24px;
+        }
+
+        .faq-answer p {
+            color: #2F3E34;
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 300;
+            opacity: 0.85;
         }
 
         /* CTA Final */
@@ -448,7 +522,6 @@
         .cta-final h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 3.5rem;
-            font-weight: 400;
             margin-bottom: 30px;
         }
 
@@ -493,6 +566,59 @@
             font-size: 0.85rem;
             font-weight: 300;
             letter-spacing: 0.5px;
+        }
+
+        /* Cookie Consent Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2F3E34;
+            color: #FAF8F4;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            z-index: 999;
+            font-size: 0.9rem;
+        }
+
+        .cookie-banner.hidden {
+            display: none;
+        }
+
+        .cookie-banner p {
+            margin: 0;
+            flex: 1;
+            font-weight: 300;
+        }
+
+        .cookie-banner button {
+            background: #FAF8F4;
+            color: #2F3E34;
+            border: none;
+            padding: 10px 24px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .cookie-banner button:hover {
+            background: #9FB3A2;
+            color: #FAF8F4;
+        }
+
+        @media (max-width: 600px) {
+            .cookie-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
         }
 
         /* Modal */
@@ -553,7 +679,6 @@
             font-size: 2.5rem;
             margin-bottom: 15px;
             color: #2F3E34;
-            font-weight: 400;
         }
 
         .modal-intro {
@@ -684,6 +809,7 @@
             .services,
             .philosophy,
             .why-work,
+            .faq,
             .cta-final {
                 padding: 80px 30px;
             }
@@ -730,7 +856,8 @@
             .services-header h2,
             .why-work-header h2,
             .about h2,
-            .philosophy h2 {
+            .philosophy h2,
+            .faq-header h2 {
                 font-size: 2rem;
             }
 
@@ -840,6 +967,12 @@
 
             <div class="services-grid">
                 <div class="service-card">
+                    <h3>Úvodní konzultace</h3>
+                    <div class="service-price">200 Kč / 30 min</div>
+                    <p>Seznámení a první krok k tvé změně. Zjistíme, kde stojíš, co tě trápí a jak bychom spolu mohli pracovat.</p>
+                </div>
+
+                <div class="service-card">
                     <h3>Diagnostika InBody</h3>
                     <div class="service-price">700 Kč</div>
                     <p>Přesné měření složení těla s detailním vysvětlením výsledků. Zjistíš, kde opravdu stojíš a jakými kroky se můžeš posunout dál.</p>
@@ -887,10 +1020,48 @@
         </div>
     </section>
 
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq-header">
+                <h2>Často kladené otázky</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">Je konzultace závazná?</button>
+                    <div class="faq-answer">
+                        <p>Ne, konzultace je nezávazná.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Pro koho je služba vhodná?</button>
+                    <div class="faq-answer">
+                        <p>Pro všechny, kteří na sobě chtějí něco změnit.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Probíhá konzultace online nebo offline?</button>
+                    <div class="faq-answer">
+                        <p>Obojí je možné – online i osobně.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Kdy uvidím výsledky?</button>
+                    <div class="faq-answer">
+                        <p>Podle vaší snahy a zapojení.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="cta-final" id="contact">
     <div class="container">
-        <h2>Objednat konzultaci</h2>
-        <p>Prvních 30 minut je úplně zdarma. Zjistíme, kde stojíš, co tě trápí a jak bychom spolu mohli pracovat. Bez závazků, bez prodeje – jen upřímný rozhovor.</p>
+        <h2>Objednejte si úvodní konzultaci</h2>
+        <p>Zjistíme, kde stojíš, co tě trápí a jak bychom spolu mohli pracovat. Bez závazků – jen upřímný rozhovor.</p>
         <button class="cta-final-button" onclick="openConsultation()">Zarezervovat si čas</button>
     </div>
 </section>
@@ -899,8 +1070,8 @@
 <div id="consultationModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeConsultation()">&times;</span>
-        <h2>Bezplatná konzultace</h2>
-        <p class="modal-intro">Vyplň si formulář a my ti brzy napíšeme.</p>
+        <h2>Objednejte si úvodní konzultaci</h2>
+        <p class="modal-intro">Vyplň formulář a brzy se ti ozveme.</p>
         
         <form id="consultationForm" action="https://api.web3forms.com/submit" method="POST">
             <input type="hidden" name="access_key" value="8f69ebdd-9860-4844-add4-3275216f82b6">
@@ -942,10 +1113,34 @@
     <p>&copy; 2025 Dominika Kvízová – Výživové poradenství. Všechna práva vyhrazena.</p>
 </footer>
 
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" class="cookie-banner">
+    <p>Tento web používá cookies pro zajištění správného fungování a lepší uživatelský zážitek.</p>
+    <button onclick="acceptCookies()">Rozumím</button>
+</div>
+
 <script>
     const modal = document.getElementById('consultationModal');
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const item = button.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+
+    // Cookie Consent
+    function acceptCookies() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieBanner').classList.add('hidden');
+    }
+
+    if (localStorage.getItem('cookiesAccepted') === 'true') {
+        document.getElementById('cookieBanner').classList.add('hidden');
+    }
 
     function openConsultation() {
         modal.style.display = 'block';
